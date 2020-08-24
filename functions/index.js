@@ -36,7 +36,7 @@ const fetchUrl = async (slug) => {
 }
 
 const createUrl = async (req, res) => {
-    const { url, slug } = JSON.parse(req.body);
+    const { url, slug } = req.body;
     if (!url) {
         return res.status(400).send({
             messsage: 'Url missing',

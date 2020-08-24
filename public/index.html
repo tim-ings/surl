@@ -90,14 +90,22 @@
         <input type="text" name="slug" id="inp-slug" placeholder="slug" />
         <input type="submit" action="submit" value="Create" id="submit-btn" />
       </form>
+      <p>
+        <a id="short-link" href=""></a>
+      </p>
     </div>
     <script>
       document.getElementById("create-form").addEventListener("submit", async (e) => {
+        // prevent form submission
         e.preventDefault();
+        // clear old anchor tag
+        const link = document.getElementById("short-link");
+        link.text = "";
+        link.href = "";
+        // create the shortened link
         const url = document.getElementById("inp-url").value;
         const slug = document.getElementById("inp-slug").value;
         const resp = await fetch("https://surl.tim-ings.com/run", {
-          mode: "no-cors",
           method: "POST",
           headers: {
             "Accept": "application/json",
@@ -108,8 +116,10 @@
             slug,
           })
         });
+        // update the anchor tag
         const data = await resp.json();
-        console.log(data);
+        link.text = data.url;
+        link.href = data.url;
       });
     </script>
   </body>
