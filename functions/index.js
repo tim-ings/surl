@@ -39,7 +39,7 @@ const createUrl = async (req, res) => {
     const { url, slug } = req.body;
     if (!url) {
         return res.status(400).send({
-            messsage: 'Url missing',
+            message: 'Url missing',
         });
     }
 
@@ -48,7 +48,7 @@ const createUrl = async (req, res) => {
         const doc = await collection.doc(slug).get();
         if (doc.exists) {
             return res.status(400).send({
-                messsage: 'Slug already in use',
+                message: 'Slug already in use',
             });
         }
     }
@@ -61,7 +61,7 @@ const decodeUrl = async (req, res) => {
     const slug = req.url.slice(1);
     if (slug.length <= 0) {
         return res.status(404).send({
-            messsage: 'Not found',
+            message: 'Not found',
         });
     }
     const url = await fetchUrl(slug);
@@ -69,7 +69,7 @@ const decodeUrl = async (req, res) => {
         return res.redirect(url);
     }
     return res.status(404).send({
-        messsage: 'Not found',
+        message: 'Not found',
     });
 }
 
@@ -81,7 +81,7 @@ exports.run = functions.https.onRequest((req, res) => {
             return decodeUrl(req, res);
         } else {
             return res.status(403).send({
-                messsage: 'Forbidden: Invalid request method',
+                message: 'Forbidden: Invalid request method',
             });
         }
     });
