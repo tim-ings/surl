@@ -25,7 +25,6 @@ const setState = (newState) => {
 
 window.onload = () => {
     if (window.location.search.indexOf("iframe=true") !== -1) {
-        console.log("iframe is true");
         const container = document.querySelector(".container");
         container.style.margin = "0";
     }

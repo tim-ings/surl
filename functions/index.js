@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const Hashids = require('hashids/cjs');
 const { v4: uuid } = require('uuid');
 const cors = require('cors')({
-    origin: true,
+    origin: /^([^.]*\.)?tim-ings\.com$/,
 });
 
 admin.initializeApp();
