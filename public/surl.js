@@ -3,6 +3,14 @@ let errorState = "";
 const linkTag = document.getElementById("short-link");
 const errorTag = document.getElementById("error");
 
+window.onload = () => {
+    if (window.location.search.indexOf("iframe=true") !== -1) {
+        console.log("iframe is true");
+        const container = document.querySelector(".container");
+        container.style.margin = "0";
+    }
+}
+
 const updateRender = () => {
     linkTag.classList.toggle("hidden", !(linkState && linkState.length > 0));
     linkTag.value = linkState;
