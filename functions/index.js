@@ -3,7 +3,7 @@ const admin = require('firebase-admin');
 const Hashids = require('hashids/cjs');
 const { v4: uuid } = require('uuid');
 const cors = require('cors')({
-    origin: /^([^.]*\.)?tim-ings\.com$/,
+    origin: /^(([^.]*\.)?tim-ings\.com)|(([^.]*\.)?ings\.cc)$/,
 });
 
 admin.initializeApp();
@@ -12,7 +12,7 @@ const collection = firestore.collection('surls');
 
 const SLUG_LEN = 11;
 
-const formatUrl = (slug) => `https://surl.tim-ings.com/${slug}`;
+const formatUrl = (slug) => `https://ings.cc/${slug}`;
 
 const generateSlug = () => {
     const hashids = new Hashids(uuid(), SLUG_LEN);
